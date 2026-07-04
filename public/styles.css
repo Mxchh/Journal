@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    background-color: rgb(237, 237, 237);
+    height: 100vh;
+}
+
+main {
+    padding-bottom: 10px;
+}
+
+body .container {
+    max-width: 1450px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+header {
+    background-color: rgb(38, 35, 35);
+    display: flex;
+    width: 100vw;
+    color: white;
+    padding: 15px 10px 0 0;
+}
+
+header .container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 20px 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1450px;
+}
+
+header .container-header .headerLeft a {
+    color: white;
+    text-decoration: none;
+    padding: 0 30px;
+    font-size: 19px;
+}
+
+header .container-header .headerLeft .active {
+    color: rgb(31, 237, 230);
+    text-decoration: underline;
+}
+
+.dashoard-header {
+    padding: 25px 0;
+}
+
+.dashoard-header .welcome-message {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.dashoard-header .welcome-message input {
+    background-color: rgb(22, 22, 205);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+hr {
+    margin-bottom: 30px;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.date-filter {
+    display: flex;
+}
+
+.cards article {
+    background-color: white;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cards article .button {
+    display: flex;
+    gap: 5px;
+}
+
+.cards article div {
+    margin-bottom: 10px;
+}
+
+.cards article .button input {
+    background-color: rgb(22, 22, 205);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* New Entry Page */
+.container .title-center {
+display: flex;
+justify-content: center;
+padding-top: 20px;
+}
+
+.entry-box {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px 300px;
+}
+
+.entry-box .date, .entry-box .date p, .entry-box .title, .entry-box .title p, .entry-box .mood p,.entry-box .mood, .entry-box .description, .entry-box .description p {
+    padding-bottom: 15px;
+}
+
+.entry-box .mood select {
+    padding:5px 70px 5px 0 ;
+}
+
+.entry-box .date input {
+    width: 100%;
+    padding: 2px 0;
+}
+
+.entry-box .title input {
+    width: 100%;
+    padding: 4px 0;
+}
+
+.entry-box .button input {
+    background-color: rgb(22, 22, 205);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.entry-box .button button {
+    background-color: rgb(22, 22, 205);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}

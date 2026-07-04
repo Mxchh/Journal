@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JournalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/journals', function () {
+    return view('journal.homepage');
 });
+
+Route::resource('journals', JournalController::class);
