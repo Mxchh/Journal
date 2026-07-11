@@ -55,4 +55,9 @@ class JournalController extends Controller
         $journal->delete();
         return redirect()->route('journals.index');
     }
+
+    public function show(Journal $journal)
+    {
+        return view('journal.view', compact('journal'));
+    }
 }

@@ -54,7 +54,7 @@
                             <p>Mood: {{ $journal->mood }}</p>
                         </div>
                         <div class="entry-description">
-                            <p>{{ $journal->description }}</p>
+                            <p>{{ Str::limit($journal->description, 300) }}</p>
                         </div>
                         <div class="button">
                             <a href="{{ route('journals.edit', $journal->id) }}">
@@ -65,7 +65,9 @@
                                 @method('DELETE')
                                 <input type="submit" value="Delete">
                             </form>
-                            <input type="submit" value="view">
+                            <a href="{{ route('journals.show', $journal->id) }}"><input type="submit"
+                                    value="view"></a>
+
                         </div>
                     </article>
                 @endforeach
