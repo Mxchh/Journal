@@ -14,8 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/journals', function () {
-    return view('journal.homepage');
-});
-
 Route::resource('journals', JournalController::class);

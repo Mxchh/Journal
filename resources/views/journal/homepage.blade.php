@@ -45,7 +45,7 @@
                 @foreach ($journals as $journal)
                     <article>
                         <div class="entry-date">
-                            <p>{{ $journal->date }}</p>
+                            <p>{{ \Carbon\Carbon::parse($journal->date)->format('d M Y') }}</p>
                         </div>
                         <div class="entry-title">
                             <h3>{{ $journal->title }}</h3>

@@ -33,26 +33,44 @@
                 @method('PUT')
                 <div class="date">
                     <p>Date</p>
-                    <input type="date" value="{{ $journal->date }}" name="date">
+                    <input type="date" value="{{ old('date', $journal->date) }}" name="date">
+                    @error('date')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="title">
                     <p>Title</p>
-                    <input type="text" name="title" placeholder="Enter title for your journal entry..." value="{{ $journal->title }}">
+                    <input type="text" name="title" placeholder="Enter title for your journal entry..."
+                        value="{{ old('title', $journal->title) }}">
+                    @error('title')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mood">
                     <p>Mood</p>
                     <select name="mood" id="mood" value="{{ $journal->mood }}">
-                        <option value="Happy" {{ $journal->mood=='Happy' ? 'selected' : '' }}>Happy</option>
-                        <option value="Sad" {{ $journal->mood=='Sad' ? 'selected' : '' }}>Sad</option>
-                        <option value="Excited" {{ $journal->mood=='Excited' ? 'selected' : '' }}>Excited</option>
-                        <option value="Disappointed" {{ $journal->mood=='Disappointed' ? 'selected' : '' }}>Disappointed</option>
-                        <option value="Angry" {{ $journal->mood=='Angry' ? 'selected' : '' }}>Angry</option>
-                        <option value="In Love" {{ $journal->mood=='In Love' ? 'selected' : '' }}>In Love</option>
+                        <option value="Happy" {{ old('mood', $journal->mood) == 'Happy' ? 'selected' : '' }}>Happy
+                        </option>
+                        <option value="Sad" {{ old('mood', $journal->mood) == 'Sad' ? 'selected' : '' }}>Sad</option>
+                        <option value="Excited" {{ old('mood', $journal->mood) == 'Excited' ? 'selected' : '' }}>Excited
+                        </option>
+                        <option value="Disappointed"
+                            {{ old('mood', $journal->mood) == 'Disappointed' ? 'selected' : '' }}>Disappointed</option>
+                        <option value="Angry" {{ old('mood', $journal->mood) == 'Angry' ? 'selected' : '' }}>Angry
+                        </option>
+                        <option value="In Love" {{ old('mood', $journal->mood) == 'In Love' ? 'selected' : '' }}>In
+                            Love</option>
                     </select>
+                    @error('mood')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="description">
                     <p>Journal Entry</p>
-                    <textarea name="description" id="description" rows="8" cols="108" placeholder="Write about your day...">{{ $journal->description }}</textarea>
+                    <textarea name="description" id="description" rows="8" cols="108" placeholder="Write about your day...">{{ old('description', $journal->description) }}</textarea>
+                    @error('description')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="button">
                     <input type="submit" value="Save Entry">

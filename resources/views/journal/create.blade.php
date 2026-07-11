@@ -32,27 +32,42 @@
                 @csrf
                 <div class="date">
                     <p>Date</p>
-                    <input type="date" name="date">
+                    <input type="date" name="date" value="{{ old('date') }}">
+                    @error('date')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="title">
                     <p>Title</p>
-                    <input type="text" placeholder="Enter title for your journal entry..." name="title">
+                    <input type="text" placeholder="Enter title for your journal entry..." name="title"
+                        value="{{ old('title') }}">
+                    @error('title')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mood">
                     <p>Mood</p>
                     <select name="mood" id="mood" name="mood">
-                        <option value="select">--Select Mood--</option>
-                        <option value="Happy">Happy</option>
-                        <option value="Sad">Sad</option>
-                        <option value="Excited">Excited</option>
-                        <option value="Disappointed">Disappointed</option>
-                        <option value="Angry">Angry</option>
-                        <option value="In Love">In Love</option>
+                        <option value="select" {{ old('mood') == 'select' ? 'selected' : '' }}>--Select Mood--</option>
+                        <option value="Happy" {{ old('mood') == 'Happy' ? 'selected' : '' }}>Happy</option>
+                        <option value="Sad" {{ old('mood') == 'Sad' ? 'selected' : '' }}>Sad</option>
+                        <option value="Excited" {{ old('mood') == 'Excited' ? 'selected' : '' }}>Excited</option>
+                        <option value="Disappointed" {{ old('mood') == 'Disappointed' ? 'selected' : '' }}>Disappointed
+                        </option>
+                        <option value="Angry" {{ old('mood') == 'Angry' ? 'selected' : '' }}>Angry</option>
+                        <option value="In Love" {{ old('mood') == 'In Love' ? 'selected' : '' }}>In Love</option>
                     </select>
+                    @error('mood')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="description">
                     <p>Journal Entry</p>
-                    <textarea name="description" id="description" rows="5" cols="50" placeholder="Write about your day..." name="decription"></textarea>
+                    <textarea name="description" id="description" rows="5" cols="50" placeholder="Write about your day..."
+                        name="decription">{{ old('description') }}</textarea>
+                    @error('description')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="button">
                     <input type="submit" value="Save Entry">
