@@ -33,14 +33,28 @@
             </section>
             <hr>
             <section class="filter">
-                <div class="search-filter">
-                    <input type="search" placeholder="Search...">
-                </div>
-                <div class="date-filter">
-                    <p>Filter by Date: </p>
-                    <input type="date">
-                </div>
+                <form action="{{ route('journals.index') }}" method="get" id="filterForm">
+                    <div class="search-filter">
+                        <input type="search" placeholder="Search..." name="search" value="{{ request('search') }}">
+                    </div>
+                    <div class="date-filter">
+                        <p>Filter by Date: </p>
+                        <input type="date" name="date" value="{{ request('date') }}" class="date">
+                        <input type="submit" name="filter" value="Filter" class="filter">
+                        <input type="submit" name="clearBtn" value="Clear" class="clearBtn" id="clearBtn">
+                    </div>
+                </form>
             </section>
+
+            <script>
+                document.getElementById('clearBtn').addEventListener('click', function(){
+                    const form = document.getElementById('filterForm');
+                    form.querySelector('input[name="search"]').value = '';
+                    form.querySelector('input[name="date"]').value = '';
+                    window.location.href = "{{ route('journals.index') }}";
+                });
+            </script>
+
             <section class="cards">
                 @foreach ($journals as $journal)
                     <article>

@@ -78,14 +78,44 @@ hr {
     margin-bottom: 30px;
 }
 
-.filter {
+.filter form {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
+.filter form .search-filter input {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border-color: #00000056;
+}
+
+.filter form .date-filter .date {
+    padding: 4px 15px;
+    border-radius: 5px;
+    border-color: #00000056;
+}
+
 .date-filter {
     display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.date-filter .filter {
+    background-color: rgb(22, 22, 205);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.date-filter .clearBtn {
+    background-color: rgb(22, 22, 205);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
 }
 
 .cards article {

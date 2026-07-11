@@ -8,9 +8,21 @@ use Illuminate\Http\Request;
 class JournalController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $journals = Journal::all();
+
+        $query = Journal::query();
+        if($request->filled('search')) {
+            $query->where(function($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->search . '%' );
+            });
+        }
+
+        if($request->filled('date')) {
+            $query->whereDate('date', '=', $request->date);
+        }
+
+        $journals = $query->get();
 
         return view('journal.homepage', compact('journals'));
     }
