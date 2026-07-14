@@ -120,9 +120,15 @@ hr {
 
 .cards article {
     background-color: white;
-    margin: 20px 0;
+    margin: 0 0 20px 0;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.cards article .entry-mood{
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
 }
 
 .cards article .button {

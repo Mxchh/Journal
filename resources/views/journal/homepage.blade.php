@@ -47,7 +47,7 @@
             </section>
 
             <script>
-                document.getElementById('clearBtn').addEventListener('click', function(){
+                document.getElementById('clearBtn').addEventListener('click', function() {
                     const form = document.getElementById('filterForm');
                     form.querySelector('input[name="search"]').value = '';
                     form.querySelector('input[name="date"]').value = '';
@@ -57,14 +57,17 @@
 
             <section class="cards">
                 @foreach ($journals as $journal)
+                    <div class="entry-date"
+                        style="background-color: {{ moodColor($journal->mood) }}; color: white; padding: 10px; border-radius: 8px 8px 0 0;">
+                        <p>{{ \Carbon\Carbon::parse($journal->date)->format('d M Y') }}</p>
+                    </div>
                     <article>
-                        <div class="entry-date">
-                            <p>{{ \Carbon\Carbon::parse($journal->date)->format('d M Y') }}</p>
-                        </div>
+
                         <div class="entry-title">
                             <h3>{{ $journal->title }}</h3>
                         </div>
-                        <div class="entry-mood">
+                        <div class="entry-mood"
+                            style="background-color: {{ moodColor($journal->mood) }}; color: white;">
                             <p>Mood: {{ $journal->mood }}</p>
                         </div>
                         <div class="entry-description">
@@ -72,16 +75,16 @@
                         </div>
                         <div class="button">
                             <a href="{{ route('journals.edit', $journal->id) }}">
-                                <input type="submit" value="Edit">
+                                <input type="submit" value="Edit" style="background-color: {{ moodColor($journal->mood) }};">
                             </a>
                             <form action="{{ route('journals.destroy', $journal->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete">
+                                <input type="submit" value="Delete" style="background-color: {{ moodColor($journal->mood) }};">
                             </form>
-                            <a href="{{ route('journals.show', $journal->id) }}"><input type="submit"
-                                    value="view"></a>
-
+                            <a href="{{ route('journals.show', $journal->id) }}">
+                                <input type="submit" value="view" style="background-color: {{ moodColor($journal->mood) }};">
+                            </a>
                         </div>
                     </article>
                 @endforeach
