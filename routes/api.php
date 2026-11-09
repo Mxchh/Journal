@@ -1,7 +1,8 @@
 <?php
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\JournalController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\StreakController;
+use App\Models\Journal;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->get('/user', function(Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function(){
+    Route::apiResource('journals', JournalController::class);
+    Route::get('/streak', [StreakController::class, 'streak']);
 });
-
-Route::apiResource('journals', JournalController::class);
