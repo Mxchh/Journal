@@ -22,6 +22,7 @@ class AuthController extends Controller
             'username'=> $validated['username'],
             'email'=> $validated['email'],
             'password' => Hash::make($validated['password']),
+            'role'=>'user'
         ]);
 
         return response()->json([
@@ -56,7 +57,8 @@ class AuthController extends Controller
         'user'=>[
             'id'=> $user->id,
             'username'=> $user->username,
-            'email'=> $user->email
+            'email'=> $user->email,
+            'role'=>$user->role,
         ],
     ],200);
     }
