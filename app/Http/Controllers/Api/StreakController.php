@@ -1,12 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Journal;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-
-namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
 use App\Models\Journal;
 use Carbon\Carbon;
