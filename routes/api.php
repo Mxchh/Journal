@@ -6,6 +6,7 @@ use App\Models\Journal;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\StatisticController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/statistics/common-mood', [StatisticController::class, 'commonMoods']);
         Route::get('/statistics/writing-rhythm', [StatisticController::class, 'writingRhythm']);
             Route::get('/statistics/active-days', [StatisticController::class, 'activeDays']);
+            Route::get('/profile/{user}',[ UserController::class, 'show']);
+            Route::patch('/profile/{user}',[UserController::class, 'updateProfile']);
 
     Route::middleware(['role:admin'])->group(function(){
         Route::get('/users', [UserController::class, 'index']);
