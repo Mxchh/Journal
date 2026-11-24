@@ -46,11 +46,11 @@ class JournalController extends Controller
             'mood' => 'required|string|not_in:select',
             'description' => 'required|string'
         ]);
-
-        $journal->update($data);
         if($journal->user_id !== auth()->id()) {
             abort(403);
         }
+        $journal->update($data);
+
         return response()->json(['message'=> 'Journal updated successfully', 'data' => $journal], 200);
     }
 
