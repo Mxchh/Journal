@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\StreakController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\StatisticController;
+use App\Http\Controllers\Api\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ use App\Http\Controllers\Api\StatisticController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/streak', [StreakController::class, 'streak']);
     Route::get('/moods', [MoodController::class, 'index']);
