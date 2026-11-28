@@ -1,13 +1,14 @@
 <?php
 
+use App\Http\Controllers\Api\AdminDashboardController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\JournalController;
 use App\Http\Controllers\Api\MoodController;
-use App\Http\Controllers\Api\StreakController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\StatisticController;
-use App\Http\Controllers\Api\ForgotPasswordController;
+use App\Http\Controllers\Api\StreakController;
+use App\Http\Controllers\Api\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware(['role:admin'])->group(function () {
         Route::apiResource('moods', MoodController::class)->except(['index']);
         Route::get('/users', [UserController::class, 'index']);
+        Route::get('/admin-dashboard', [AdminDashboardController::class, 'overview']);
     });
 });
