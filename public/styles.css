@@ -38,10 +38,16 @@ header .container-header {
     max-width: 1450px;
 }
 
+header .container-header .headerLeft {
+    display: flex;
+    gap: 30px;
+    padding-right: 30px;
+}
+
+
 header .container-header .headerLeft a {
     color: white;
     text-decoration: none;
-    padding: 0 30px;
     font-size: 19px;
 }
 
@@ -72,21 +78,57 @@ hr {
     margin-bottom: 30px;
 }
 
-.filter {
+.filter form {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
+.filter form .search-filter input {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border-color: #00000056;
+}
+
+.filter form .date-filter .date {
+    padding: 4px 15px;
+    border-radius: 5px;
+    border-color: #00000056;
+}
+
 .date-filter {
     display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.date-filter .filter {
+    background-color: rgb(22, 22, 205);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.date-filter .clearBtn {
+    background-color: rgb(22, 22, 205);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
 }
 
 .cards article {
     background-color: white;
-    margin: 20px 0;
+    margin: 0 0 20px 0;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.cards article .entry-mood{
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
 }
 
 .cards article .button {
@@ -99,14 +141,13 @@ hr {
 }
 
 .cards article .button input {
-    background-color: rgb(22, 22, 205);
     color: white;
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
     border: none;
 }
 
-/* New Entry Page */
+/* Create Page */
 .container .title-center {
 display: flex;
 justify-content: center;
@@ -119,6 +160,10 @@ padding-top: 20px;
     flex-direction: column;
     padding: 20px;
     margin: 20px 300px;
+}
+
+.entry-box .error {
+    color: red;
 }
 
 .entry-box .date, .entry-box .date p, .entry-box .title, .entry-box .title p, .entry-box .mood p,.entry-box .mood, .entry-box .description, .entry-box .description p {
@@ -142,7 +187,7 @@ padding-top: 20px;
 .entry-box .button input {
     background-color: rgb(22, 22, 205);
     color: white;
-    padding: 8px;
+    padding: 10px;
     border-radius: 5px;
     border: none;
 }
@@ -150,7 +195,16 @@ padding-top: 20px;
 .entry-box .button button {
     background-color: rgb(22, 22, 205);
     color: white;
-    padding: 8px;
+    padding: 10px;
     border-radius: 5px;
     border: none;
+}
+
+/* View page */
+
+select:disabled {
+    background-color: white;
+    color: black;
+    opacity: 1;
+    border: 1px solid #000000;
 }

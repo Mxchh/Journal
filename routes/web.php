@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\JournalController;
+use App\Http\Controllers\Api\JournalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +13,5 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/journals', function () {
-    return view('journal.homepage');
-});
 
 Route::resource('journals', JournalController::class);

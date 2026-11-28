@@ -33,39 +33,58 @@
             </section>
             <hr>
             <section class="filter">
-                <div class="search-filter">
-                    <input type="search" placeholder="Search...">
-                </div>
-                <div class="date-filter">
-                    <p>Filter by Date: </p>
-                    <input type="date">
-                </div>
+                <form action="{{ route('journals.index') }}" method="get" id="filterForm">
+                    <div class="search-filter">
+                        <input type="search" placeholder="Search..." name="search" value="{{ request('search') }}">
+                    </div>
+                    <div class="date-filter">
+                        <p>Filter by Date: </p>
+                        <input type="date" name="date" value="{{ request('date') }}" class="date">
+                        <input type="submit" name="filter" value="Filter" class="filter">
+                        <input type="submit" name="clearBtn" value="Clear" class="clearBtn" id="clearBtn">
+                    </div>
+                </form>
             </section>
+
+            <script>
+                document.getElementById('clearBtn').addEventListener('click', function() {
+                    const form = document.getElementById('filterForm');
+                    form.querySelector('input[name="search"]').value = '';
+                    form.querySelector('input[name="date"]').value = '';
+                    window.location.href = "{{ route('journals.index') }}";
+                });
+            </script>
+
             <section class="cards">
                 @foreach ($journals as $journal)
+                    <div class="entry-date"
+                        style="background-color: {{ moodColor($journal->mood) }}; color: white; padding: 10px; border-radius: 8px 8px 0 0;">
+                        <p>{{ \Carbon\Carbon::parse($journal->date)->format('d M Y') }}</p>
+                    </div>
                     <article>
-                        <div class="entry-date">
-                            <p>{{ $journal->date }}</p>
-                        </div>
+
                         <div class="entry-title">
                             <h3>{{ $journal->title }}</h3>
                         </div>
-                        <div class="entry-mood">
+                        <div class="entry-mood"
+                            style="background-color: {{ moodColor($journal->mood) }}; color: white;">
                             <p>Mood: {{ $journal->mood }}</p>
                         </div>
                         <div class="entry-description">
-                            <p>{{ $journal->description }}</p>
+                            <p>{{ Str::limit($journal->description, 300) }}</p>
                         </div>
                         <div class="button">
                             <a href="{{ route('journals.edit', $journal->id) }}">
-                                <input type="submit" value="Edit">
+                                <input type="submit" value="Edit" style="background-color: {{ moodColor($journal->mood) }};">
                             </a>
                             <form action="{{ route('journals.destroy', $journal->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete">
+                                <input type="submit" value="Delete" style="background-color: {{ moodColor($journal->mood) }};">
                             </form>
-                            <input type="submit" value="view">
+                            <a href="{{ route('journals.show', $journal->id) }}">
+                                <input type="submit" value="view" style="background-color: {{ moodColor($journal->mood) }};">
+                            </a>
                         </div>
                     </article>
                 @endforeach
