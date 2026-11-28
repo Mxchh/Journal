@@ -13,15 +13,18 @@ class StreakController extends Controller
     public function streak(Request $request) {
         $user = $request->user();
         $days = Journal::where('user_id', $user->id)
-        ->selectRaw('DATE(created_at) as day')
-        ->distinct()
-        ->orderBy('day','desc')
-        ->pluck('day')
-        ->toArray();
+            ->orderByDesc('created_at')
+            ->pluck('created_at')
+            ->map(fn ($createdAt) => Carbon::parse($createdAt, 'UTC')
+                ->setTimezone('Asia/Kuala_Lumpur')
+                ->toDateString())
+            ->unique()
+            ->sortDesc()
+            ->values();
         $streak=0;
 
-        if(!empty($days)) {
-            $expectedDate = Carbon::parse($days[0]);
+        if ($days->isNotEmpty()) {
+            $expectedDate = Carbon::parse($days[0], 'Asia/Kuala_Lumpur');
 
             foreach($days as $day){
                 if($day===$expectedDate->toDateString())
@@ -34,14 +37,11 @@ class StreakController extends Controller
             }
         }
         $weeklyDays = [];
-        for($i=6; $i>=0; $i--) {
-            $date = Carbon::today()
-            ->subDays($i)
-            ->toDateString();
+        $monday = Carbon::today('Asia/Kuala_Lumpur')->startOfWeek(Carbon::MONDAY);
+        for ($i = 0; $i < 7; $i++) {
+            $date = $monday->copy()->addDays($i)->toDateString();
 
-            $exists = Journal::where('user_id', $user->id)
-            ->whereDate('created_at', $date)
-            ->exists();
+            $exists = $days->contains($date);
 
             $weeklyDays[] =$exists;
         }
@@ -54,4 +54,4 @@ class StreakController extends Controller
             'week_days'=>$weeklyDays,
         ]);
     }
-}   
+}
